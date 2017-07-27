@@ -55,6 +55,7 @@ gof.default <- function (sim, obs, na.rm=TRUE, do.spearman=FALSE, do.pbfdc=FALSE
      rSD    <- rSD(sim, obs, na.rm=na.rm)     
      PBIAS  <- pbias(sim, obs, na.rm=na.rm, ...)
      NSE    <- NSE(sim, obs, na.rm=na.rm, ...)
+     lnNSE  <- NSE(sim, obs, na.rm=na.rm, FUN=log, epsilon="Pushpalatha2012")
      mNSE   <- mNSE(sim, obs, na.rm=na.rm, j=j, ...)
      rNSE   <- rNSE(sim, obs, na.rm=na.rm, ...)
      d      <- d(sim, obs, na.rm=na.rm, ...)
@@ -90,7 +91,7 @@ gof.default <- function (sim, obs, na.rm=TRUE, do.spearman=FALSE, do.pbfdc=FALSE
      
      if (do.pbfdc) { pbfdc  <- pbiasfdc(sim, obs, na.rm=na.rm, lQ.thr=lQ.thr, hQ.thr=hQ.thr, plot=FALSE, ...) }
      
-     gof <- rbind(ME, MAE, MSE, RMSE, NRMSE, PBIAS, RSR, rSD, NSE, mNSE, rNSE, d, md, rd, cp, r, R2, bR2, KGE, VE)     
+     gof <- rbind(ME, MAE, MSE, RMSE, NRMSE, PBIAS, RSR, rSD, NSE, lnNSE, mNSE, rNSE, d, md, rd, cp, r, R2, bR2, KGE, VE)     
      
      rownames(gof)[5] <- "NRMSE %"
      rownames(gof)[6] <- "PBIAS %"    
